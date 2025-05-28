@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 # Clear Screen
 tput reset || clear
 
@@ -843,7 +844,7 @@ top_codename=$(echo "${codename}" | tr '[:upper:]' '[:lower:]' | tr -dc '[:print
 manufacturer=$(echo "${manufacturer}" | tr '[:upper:]' '[:lower:]' | tr -dc '[:print:]' | tr '_' '-' | cut -c 1-35)
 # Repo README File
 printf "## %s\n- Manufacturer: %s\n- Platform: %s\n- Codename: %s\n- Brand: %s\n- Flavor: %s\n- Release Version: %s\n- Id: %s\n- Incremental: %s\n- Tags: %s\n- CPU Abilist: %s\n- A/B Device: %s\n- Locale: %s\n- Screen Density: %s\n- Fingerprint: %s\n- OTA version: %s\n- Branch: %s\n- Repo: %s\n" "${description}" "${manufacturer}" "${platform}" "${codename}" "${brand}" "${flavor}" "${release}" "${id}" "${incremental}" "${tags}" "${abilist}" "${is_ab}" "${locale}" "${density}" "${fingerprint}" "${otaver}" "${branch}" "${repo}" > "${OUTDIR}"/README.md
-printf "\n\n>Dumped by [Phoenix Firmware Dumper](https://github.com/DroidDumps/phoenix_firmware_dumper)\n" >> "${OUTDIR}"/README.md
+printf "\n\n>Dumped by Minati Firmware Dumper\n" >> "${OUTDIR}"/README.md
 cat "${OUTDIR}"/README.md
 
 # copy file names
@@ -932,6 +933,7 @@ if [[ -s "${PROJECT_DIR}"/.github_token ]]; then
 			printf "\n<b>Device: %s</b>" "${codename}"
 			printf "\n<b>Version:</b> %s" "${release}"
 			printf "\n<b>Fingerprint:</b> %s" "${fingerprint}"
+                        printf "\n<b>Platform:</b> %s" "${platform}"
 			printf "\n<a href=\"https://github.com/%s/%s/tree/%s/\">Github Tree</a>" "${GIT_ORG}" "${repo}" "${branch}"
 		} >> "${OUTDIR}"/tg.html
 		TEXT=$(< "${OUTDIR}"/tg.html)
